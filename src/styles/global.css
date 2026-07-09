@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: 'Inter', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+}
+
+:root {
+  color-scheme: dark;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0f172a;
+}
+::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 3px;
+}
+
+.prose {
+  max-width: none;
+}
+.prose pre {
+  background: #1e293b !important;
+  border: 1px solid #334155;
+  border-radius: 8px;
+}
+.prose code {
+  color: #e2e8f0;
+}
+.prose h2 {
+  color: #6366f1;
+  margin-top: 2rem;
+}
+.prose a {
+  color: #818cf8;
+  text-decoration: none;
+}
+.prose a:hover {
+  text-decoration: underline;
+}

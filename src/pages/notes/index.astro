@@ -1,0 +1,29 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const notes = await getCollection('notes');
+const sorted = notes.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+---
+
+<BaseLayout title="学习笔记" description="端智能学习笔记列表">
+  <section class="max-w-3xl mx-auto px-6 py-20">
+    <h1 class="text-3xl font-bold mb-2">学习笔记</h1>
+    <p class="text-gray-400 mb-10">共 {notes.length} 篇</p>
+
+    {
+      sorted.map((note) => (
+        <a href={`/notes/${note.slug}`} class="block bg-card rounded-xl p-6 border border-gray-800 hover:border-primary/50 transition mb-4">
+          <div class="text-xs text-gray-500 mb-2">{note.data.date.toISOString().split('T')[0]}</div>
+          <h2 class="text-lg font-semibold mb-2 text-white">{note.data.title}</h2>
+          <p class="text-gray-400 text-sm mb-3">{note.data.description}</p>
+          <div class="flex gap-2">
+            {note.data.tags?.map(tag => (
+              <span class="px-2 py-0.5 bg-dark border border-gray-700 rounded text-xs text-gray-400">{tag}</span>
+            ))}
+          </div>
+        </a>
+      ))
+    }
+  </section>
+</BaseLayout>
